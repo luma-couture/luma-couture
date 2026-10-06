@@ -1,1 +1,19 @@
-const button=document.querySelector('.menu');const nav=document.querySelector('nav');button.addEventListener('click',()=>nav.classList.toggle('open'));document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const menuButton = document.querySelector(".menu");
+const navigation = document.querySelector("nav");
+
+if (menuButton && navigation) {
+  menuButton.addEventListener("click", () => {
+    const isOpen = navigation.classList.toggle("open");
+
+    menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    menuButton.textContent = isOpen ? "×" : "☰";
+  });
+
+  navigation.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navigation.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.textContent = "☰";
+    });
+  });
+}
